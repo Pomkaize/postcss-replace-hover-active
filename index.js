@@ -1,10 +1,10 @@
 var postcss = require('postcss');
 
-module.exports = postcss.plugin('postcss-focus', function () {
+module.exports = postcss.plugin('postcss-replace-hover-to-active', function () {
     return function (css) {
         css.walkRules(function (rule) {
             if (rule.selector.indexOf(':hover') !== -1) {
-                rule.remove();
+                rule.selector = rule.selector.replace(':hover', ':active');
             }
         });
     };
